@@ -1,4 +1,9 @@
 <?php
+
+if ($_SESSION['role'] == 1) {
+    Redirect::to(BASE_URL);
+}
+
 if (isset($_POST['find'])) {
     $data = new VolsController();
     $vols = $data->findVols();
