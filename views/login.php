@@ -2,7 +2,7 @@
 if (isset($_POST['submit'])) {
   $loginUser = new UsersController();
   $loginUser->auth();
-} // print_r($vols);
+} 
 ?>
 
 <section class="vh-100" style="background-color: #9A616D;">

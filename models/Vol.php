@@ -2,10 +2,10 @@
 // error_reporting(0);
 class Vol{
     static public function getAll(){
-        $stmt = DB::connect()->prepare('SELECT * FROM vols WHERE seats>0');
+        $stmt = DB::connect()->prepare('SELECT * FROM vols WHERE seats>0');     // $stmt gains access to the method connect in the DB class
         $stmt->execute();
-        return $stmt->fetchAll();
-        // $stmt->close();
+        return $stmt->fetchAll();       //fetch all objects
+        $stmt->close();
         $stmt = null;
     }
 

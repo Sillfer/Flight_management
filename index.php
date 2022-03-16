@@ -1,7 +1,7 @@
 <?php
 require_once './autoload.php';
 require_once './views/includes/header.php';
-require_once './views/includes/footer.php';
+// require_once './views/includes/footer.php';
 
 $homeuser = new HomeController();
 
