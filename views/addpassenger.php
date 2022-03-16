@@ -81,7 +81,7 @@ if (isset($_POST['addpass'])) {
                                         <label for="fullname" class="form-label">Full Name</label>
                                     </div>
                                     <div class="form-outline mb-4">
-                                        <input type="datetime-local" name="birthday" placeholder="Birthday" class="form-control form-control-lg" required />
+                                        <input type="date" name="birthday" placeholder="Birthday" class="form-control form-control-lg" required />
                                         <label for="birthday" class="form-label">Birthday</label>
                                     </div>
                                     <div class="pt-1 mb-4">

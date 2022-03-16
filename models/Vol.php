@@ -2,7 +2,7 @@
 // error_reporting(0);
 class Vol{
     static public function getAll(){
-        $stmt = DB::connect()->prepare('SELECT * FROM vols');
+        $stmt = DB::connect()->prepare('SELECT * FROM vols WHERE seats>0');
         $stmt->execute();
         return $stmt->fetchAll();
         // $stmt->close();
@@ -135,11 +135,20 @@ class Vol{
         }
 
     }
+    static public function decrease($id)
+    {
+        $stmt = DB::connect()->prepare('UPDATE `vols` set seats = seats-1 WHERE id = :id');
+        $stmt->bindParam(':id', $id);
+        if($stmt->execute()){
+            return 'ok';
+        }
+
+    }
     static public function addpass($data)
     { 
-        $stmt = DB::connect()->prepare('INSERT INTO passenger (user_id, reservation_id, fullname,birthday) VALUES (:user_id,:reservation_id,:fullname,:birthday)');
+        $stmt = DB::connect()->prepare('INSERT INTO passenger (user_id, fullname,birthday) VALUES (:user_id,:fullname,:birthday)');
         $stmt->bindParam(':user_id', $data['user_id']);
-        $stmt->bindParam(':reservation_id', $data['reservation_id']);
+        // $stmt->bindParam(':reservation_id', $data['reservation_id']);
         $stmt->bindParam(':fullname', $data['fullname']);
         $stmt->bindParam(':birthday', $data['birthday']);
         if($stmt->execute()){

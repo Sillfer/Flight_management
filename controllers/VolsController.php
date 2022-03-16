@@ -102,6 +102,7 @@ public function reserveFlight(){
 
         $result = Vol::reserve($data);
         if($result === 'ok'){
+                Vol::decrease($data['id_vol']);
                 Session::set('success', 'Flight reserved');
                 Redirect::to('homeuser');
         }else{
