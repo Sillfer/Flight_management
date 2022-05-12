@@ -25,6 +25,16 @@ class VolsController{
         $vols = Vol::searchVol($data);
         return $vols;
     }
+
+    public function getpassengers()
+    {
+        if (isset($_POST['id'])) {
+            $data = array('id' => $_POST['id']); // $_POST['id'] is the id of the vol
+            $passengers = Vol::getpassengers($data); // $ gains access to method getpassengers and vol class
+            return $passengers;
+        }
+    }
+    
     public function addVol(){
         if(isset($_POST['submit'])){
             $data = array(

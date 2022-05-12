@@ -1,19 +1,8 @@
-<?php
-
-
-if ($_SESSION['role'] == 1) {
-    Redirect::to(BASE_URL);
-}
-
-if (isset($_POST['reserve'])) {
+<?php if (isset($_POST['view'])) {
     $data = new VolsController();
-    $vols = $data->reserveFlight();
-} else {
-    $data = new VolsController();
-    $vols = $data->getAllreservations();
+    $passengers = $data->getpassengers();
 }
 ?>
-
 <link rel="stylesheet" href="./views/assets/css/style.css">
 <link rel="stylesheet" href="./views/assets/css/navbar.css">
 
@@ -22,7 +11,6 @@ if (isset($_POST['reserve'])) {
     <div class="container-fluid">
         <a class="navbar-brand" href="<?php echo BASE_URL ?>">
             <img src="./views/assets/images/whitelogo.png" alt="">
-            <!-- <i class="fab fa-github fa-2x mx-3 ps-1"></i> -->
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <i class="fas fa-bars"></i>
@@ -58,51 +46,30 @@ if (isset($_POST['reserve'])) {
         </div>
     </div>
 </nav>
-<!-- Navbar -->
 <div class="content">
     <div class="container">
-        <h1 class="mb-5 d-flex justify-content-center">FLIGHTS RESERVED</h1>
+        <h1 class="mb-5 d-flex justify-content-center">BOOKING MANAGEMENT</h1>
         <div class="table-responsive">
             <?php include('./views/includes/alerts.php'); ?>
             <table class="table table-striped custom-table">
                 <thead>
                     <tr>
-                        <th scope="col">Origin</th>
-                        <th scope="col">Destination</th>
-                        <th scope="col">Departure Time</th>
-                        <th scope="col">Flight Type</th>
-                        <th scope="col">Action</th>
+                        <th scope="col">#</th>
+                        <th scope="col">Full Name</th>
+                        <th scope="col">Birthday</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($vols as $vol) : ?>
+                    <?php 
+                    $i = 1;
+                    foreach ($passengers as $passenger) : ?>
                         <tr scope="row">
                             <td>
-                                <?php echo $vol['origin']; ?>
+                                <?php echo $i; ?>
                             </td>
-                            <td><?php echo $vol['destination']; ?></td>
+                            <td><?php echo $passenger['fullname']; ?></td>
                             <td>
-                                <?php echo $vol['dep_time']; ?>
-                            </td>
-                            <td><?php echo $vol['flight_type']
-                                    ?
-                                    '<span class="badge bg-light text-dark">One way</span>'
-                                    :
-                                    '<span class="badge bg-warning">Round trip</span>';; ?></td>
-                            <td class="d-flex flex-row justify-content-evenly">
-                            <form method="post" class="mr-2" action="viewpassanger">
-                                        <input type="text" hidden name="id" value="<?php echo $vol['id_user']; ?>">
-                                        <button name="view" class="btn btn btn-info"><i class="fa fa-eye"></i></button>
-                                    </form
-                                <form method="post" class="mr-2" action="addpassenger">
-                                    <input type="hidden" name="id" value="<?php echo $vol['id']; ?>">
-                                    <button class="btn btn btn-success"><i class="fa fa-users"></i> <i class="fa fa-plus"></i></button>
-                                </form>
-
-                                <form method="POST" action="deleterev" class="mr-2">
-                                    <input type="hidden" name="iddelete" value="<?php echo $vol['id']; ?>">
-                                    <button class="btn btn btn-danger"><i class="fa fa-trash la la-trash"></i></button>
-                                </form>
+                                <?php echo $passenger['birthday']; ?>
                             </td>
                         </tr>
                     <?php endforeach; ?>

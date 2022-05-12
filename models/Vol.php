@@ -5,14 +5,14 @@ class Vol{
         $stmt = DB::connect()->prepare('SELECT * FROM vols WHERE seats>0');     // $stmt gains access to the method connect in the DB class
         $stmt->execute();
         return $stmt->fetchAll();       //fetch all objects
-        $stmt->close();
-        $stmt = null;
+        // $stmt->close();
+        // $stmt = null;
     }
 
     static public function getAllres($id_user)
     {
         if ($_SESSION['role'] == 1) {
-            $stmt = DB::connect()->prepare('SELECT
+            $stmt = DB::connect()->prepare('SELECT  
                 booking.id,
                 booking.origin,
                 booking.destination,
@@ -22,7 +22,7 @@ class Vol{
                 booking.flight_type
             FROM
                 booking
-            INNER JOIN users ON booking.id_user = users.id;');
+            INNER JOIN users ON booking.id_user = users.id;');  
             $stmt->execute();
             return $stmt->fetchAll();
         } else {
@@ -32,6 +32,15 @@ class Vol{
             return $stmt->fetchAll();
         }
     }
+
+    static public function getpassengers($data)
+    {
+        $stmt = DB::connect()->prepare('SELECT * FROM passenger WHERE user_id=:user_id'); // inner join : to get all the data from the two tables
+        $stmt->bindParam(':user_id', $data['id']);  // bindParam : binds the value of the parameter to the variable
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
     static public function getVol($data){
         $id = $data['id'];
         try{
@@ -122,7 +131,6 @@ class Vol{
     static public function reserve($data)
     {
         $stmt = DB::connect()->prepare('SELECT * FROM vols WHERE id=:id');
-        // $stmt= DB::connect()->prepare('SELECT COUNT (*) FROM booking WHERE id=:id');  
         $stmt = DB::connect()->prepare('INSERT INTO booking (id_user, id_vol, flight_type, origin, destination, dep_time) VALUES (:id_user,:id_vol,:flight_type,:origin,:destination,:dep_time)');
         $stmt->bindParam(':id_user', $data['id_user']);
         $stmt->bindParam(':id_vol', $data['id_vol']);

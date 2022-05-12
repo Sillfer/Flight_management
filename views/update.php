@@ -91,12 +91,12 @@ if (isset($_POST['submit'])) {
                                     </div>
 
                                     <div class="form-outline mb-4">
-                                        <input type="datetime-local" name="dep_time" placeholder="Departure Time" class="form-control form-control-lg" value="<?php echo $vol->dep_time; ?>" required />
+                                        <input type="datetime" name="dep_time" placeholder="Departure Time" class="form-control form-control-lg" value="<?php echo $vol->dep_time; ?>" required />
                                         <label for="dep_time" class="form-label">Departure Time</label>
                                     </div>
 
                                     <div class="form-outline mb-4">
-                                        <input type="datetime-local" name="return_time" placeholder="Return Time" class="form-control form-control-lg" value="<?php echo $vol->return_time; ?>" required />
+                                        <input type="datetime" name="return_time" placeholder="Return Time" class="form-control form-control-lg" value="<?php echo $vol->return_time; ?>" required />
                                         <label for="return_time" class="form-label">Arrival Time</label>
                                     </div>
 

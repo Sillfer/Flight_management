@@ -23,10 +23,11 @@ if (isset($_POST['submit'])) {
 
                 <form method="post">
 
-                  <div class="d-flex align-items-center mb-3 pb-1">
-                    <a href="views\assets\images\Logo.png"></a>
-                    <!-- <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i> -->
-                    <span class="h1 fw-bold mb-0">Logo</span>
+                <div class="d-flex align-items-center mb-3 pb-1">
+                    <a href="<?php echo BASE_URL ?>">
+                    <img src="./views/assets/images/herosm.png" alt="">
+                    </a>
+                    <span class="h1 fw-bold mb-0">El MADI</span>
                   </div>
 
                   <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign into your account</h5>

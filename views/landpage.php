@@ -59,9 +59,11 @@
       <img src="./views/assets/images/img4.jpg" class="img-fluid" alt="Responsive image">
         <img src="./views/assets/images/img4.jpg" class="d-block w-100">
         <div class="container">
-          <div class="carousel-caption text-start">
+          <div class="carousel-caption text-start ">
             <h1>San Francisco</h1>
+            <div class="bg-dark bg-gradient p-2 text-light bg-opacity-10">
             <p>The Golden Gate Bridge is a suspension bridge spanning the Golden Gate, the one-mile-wide strait connecting San Francisco Bay and the Pacific Ocean.</p>
+            </div>
           </div>
         </div>
       </div>

@@ -1,15 +1,14 @@
 <?php
 require_once './autoload.php';
 require_once './views/includes/header.php';
-// require_once './views/includes/footer.php';
 
 $homeuser = new HomeController();
 
-$pages = ['homeadmin', 'homeuser', 'add', 'update', 'delete', 'login', 'register', 'logout', 'showvols', 'deleterev', 'allres', 'addpassenger', 'landpage', 'staticflight'];
+$pages = ['homeadmin', 'homeuser', 'add', 'update', 'delete', 'login', 'register', 'logout', 'showvols', 'deleterev', 'allres','viewpassanger', 'addpassenger', 'landpage', 'staticflight'];
 
-if (isset($_SESSION['login']) && $_SESSION['login'] === true) {
-    if (isset($_GET['page'])) {
-        if (in_array($_GET['page'], $pages)) {
+if (isset($_SESSION['login']) && $_SESSION['login'] === true) { // Check if equal
+    if (isset($_GET['page'])) {     // Checks if variabla is  declared and is different than null
+        if (in_array($_GET['page'], $pages)) {  
             $page = $_GET['page'];
             $homeuser->index($page);
         } else {

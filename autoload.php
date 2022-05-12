@@ -4,7 +4,7 @@ session_start();
 
 require_once './bootstrap.php';
 
-spl_autoload_register('autoload');
+spl_autoload_register('autoload');  //Register 'autoload' function as autoload implementation 
 
 function autoload($class_name){
     $array_paths = array(
@@ -15,8 +15,8 @@ function autoload($class_name){
         'views/'
     );
 
-    $parts = explode('\\',$class_name);
-    $name = array_pop($parts);
+    $parts = explode('\\',$class_name);  //Explode the string into an array  of substrings, using a specified separator
+    $name = array_pop($parts); // array_pop() - returns and removes the last value of the array
 
     foreach($array_paths as $path){
         $file = sprintf($path.'%s.php',$name);

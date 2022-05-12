@@ -1,17 +1,18 @@
 <?php
 
+    //Defines data structure
 class User{
     
-    static public function login($data){
-        $username = $data['username'];
+    static public function login($data){    
+        $username = $data['username'];  
         try{
             $query = 'SELECT * FROM users WHERE username=:username';
             $stmt = DB::connect()->prepare($query);           // $stmt gains access to the method connect in the DB class
             $stmt->execute(array(":username" => $username));          //'username' will have corresponding value of $username
-            $user = $stmt->fetch(PDO::FETCH_OBJ);
-            return $user;
-            if($stmt->execute()){
-                return 'ok';
+            $user = $stmt->fetch(PDO::FETCH_OBJ);   
+            return $user;   
+            if($stmt->execute()){                              //If the query is successful, return the user object
+                return 'ok';    
             }
         }catch(PDOException $ex){   //  If error raised by PDO
             echo 'error'.$ex->getMessage();  // Get exeption message
